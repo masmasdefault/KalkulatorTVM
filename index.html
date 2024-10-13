@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Time Value of Money</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Kalkulator Time Value of Money</h1>
+        <h2>by masmasdefault</h2>
+
+        <div class="calculator">
+            <h2>1. Future Value (FV) dari Present Value (PV)</h2>
+            <div class="input-group">
+                <label for="pv1">Present Value (PV):</label>
+                <input type="number" id="pv1" placeholder="Masukkan PV">
+            </div>
+            <div class="input-group">
+                <label for="r1">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r1" placeholder="Masukkan r">
+            </div>
+            <div class="input-group">
+                <label for="n1">Jumlah Tahun (n):</label>
+                <input type="number" id="n1" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculateFV()">Hitung FV</button>
+            <div id="resultFV" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda memiliki uang Rp 1.000.000 dan disimpan di bank dengan bunga 10% per tahun selama 5 tahun. Berapakah nilai uang tersebut 5 tahun yang akan datang?</p>
+                <p>PV = Rp 1.000.000<br>
+                r = 10% = 0,10<br>
+                n = 5 tahun</p>
+                <p>FV = PV(1 + r)<sup>n</sup> = 1.000.000(1 + 0,10)<sup>5</sup> = Rp 1.610.510</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>2. Present Value (PV) dari Future Value (FV)</h2>
+            <div class="input-group">
+                <label for="fv2">Future Value (FV):</label>
+                <input type="number" id="fv2" placeholder="Masukkan FV">
+            </div>
+            <div class="input-group">
+                <label for="r2">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r2" placeholder="Masukkan r">
+            </div>
+            <div class="input-group">
+                <label for="n2">Jumlah Tahun (n):</label>
+                <input type="number" id="n2" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculatePV()">Hitung PV</button>
+            <div id="resultPV" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda ingin memiliki uang Rp 5.000.000 lima tahun dari sekarang. Jika suku bunga 12% per tahun, berapa uang yang harus Anda tabung sekarang?</p>
+                <p>FV = Rp 5.000.000<br>
+                r = 12% = 0,12<br>
+                n = 5 tahun</p>
+                <p>PV = FV / (1 + r)<sup>n</sup> = 5.000.000 / (1 + 0,12)<sup>5</sup> = Rp 2.832.710</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>3. Suku Bunga (r) dari PV dan FV</h2>
+            <div class="input-group">
+                <label for="pv3">Present Value (PV):</label>
+                <input type="number" id="pv3" placeholder="Masukkan PV">
+            </div>
+            <div class="input-group">
+                <label for="fv3">Future Value (FV):</label>
+                <input type="number" id="fv3" placeholder="Masukkan FV">
+            </div>
+            <div class="input-group">
+                <label for="n3">Jumlah Tahun (n):</label>
+                <input type="number" id="n3" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculateR()">Hitung r</button>
+            <div id="resultR" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda memiliki tabungan Rp 2.000.000 dan dalam 3 tahun menjadi Rp 2.500.000. Berapakah suku bunga per tahun?</p>
+                <p>PV = Rp 2.000.000<br>
+                FV = Rp 2.500.000<br>
+                n = 3 tahun</p>
+                <p>FV = PV(1 + r)<sup>n</sup><br>
+                2.500.000 = 2.000.000(1 + r)<sup>3</sup><br>
+                (1 + r)<sup>3</sup> = 2.500.000 / 2.000.000 = 1,25<br>
+                1 + r = 1,25<sup>1/3</sup> = 1,0772<br>
+                r = 0,0772 = 7,72%</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>4. Jumlah Tahun (n) dari PV dan FV</h2>
+            <div class="input-group">
+                <label for="pv4">Present Value (PV):</label>
+                <input type="number" id="pv4" placeholder="Masukkan PV">
+            </div>
+            <div class="input-group">
+                <label for="fv4">Future Value (FV):</label>
+                <input type="number" id="fv4" placeholder="Masukkan FV">
+            </div>
+            <div class="input-group">
+                <label for="r4">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r4" placeholder="Masukkan r">
+            </div>
+            <button onclick="calculateN()">Hitung n</button>
+            <div id="resultN" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda memiliki tabungan Rp 1.500.000 dan ingin menjadi Rp 2.000.000 dengan suku bunga 8% per tahun. Berapa tahun yang dibutuhkan?</p>
+                <p>PV = Rp 1.500.000<br>
+                FV = Rp 2.000.000<br>
+                r = 8% = 0,08</p>
+                <p>FV = PV(1 + r)<sup>n</sup><br>
+                2.000.000 = 1.500.000(1 + 0,08)<sup>n</sup><br>
+                2.000.000 / 1.500.000 = (1,08)<sup>n</sup><br>
+                1,3333 = (1,08)<sup>n</sup><br>
+                ln(1,3333) = n * ln(1,08)<br>
+                n = ln(1,3333) / ln(1,08) = 3,7 tahun</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>5. Future Value Anuitas (FVA)</h2>
+            <div class="input-group">
+                <label for="pmt5">Pembayaran (PMT):</label>
+                <input type="number" id="pmt5" placeholder="Masukkan PMT">
+            </div>
+            <div class="input-group">
+                <label for="r5">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r5" placeholder="Masukkan r">
+            </div>
+            <div class="input-group">
+                <label for="n5">Jumlah Tahun (n):</label>
+                <input type="number" id="n5" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculateFVA()">Hitung FVA</button>
+            <div id="resultFVA" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda menabung Rp 2.000.000 setiap tahun selama 10 tahun dengan suku bunga 7% per tahun. Berapa total tabungan Anda setelah 10 tahun?</p>
+                <p>PMT = Rp 2.000.000<br>
+                r = 7% = 0,07<br>
+                n = 10 tahun</p>
+                <p>FVA = PMT * [((1 + r)<sup>n</sup> - 1) / r]<br>
+                FVA = 2.000.000 * [((1 + 0,07)<sup>10</sup> - 1) / 0,07] = Rp 27.836.534</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>6. Present Value Anuitas (PVA)</h2>
+            <div class="input-group">
+                <label for="pmt6">Pembayaran (PMT):</label>
+                <input type="number" id="pmt6" placeholder="Masukkan PMT">
+            </div>
+            <div class="input-group">
+                <label for="r6">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r6" placeholder="Masukkan r">
+            </div>
+            <div class="input-group">
+                <label for="n6">Jumlah Tahun (n):</label>
+                <input type="number" id="n6" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculatePVA()">Hitung PVA</button>
+            <div id="resultPVA" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda berencana menabung Rp 1.000.000 setiap tahun selama 5 tahun. Jika suku bunga 8% per tahun, berapakah nilai sekarang dari rangkaian tabungan tersebut?</p>
+                <p>PMT = Rp 1.000.000<br>
+                r = 8% = 0,08<br>
+                n = 5 tahun</p>
+                <p>PVA = PMT * [(1 - (1 + r)<sup>-n</sup>) / r]<br>
+                PVA = 1.000.000 * [(1 - (1 + 0,08)<sup>-5</sup>) / 0,08] = Rp 3.992.710</p>
+            </div>
+        </div>
+
+        <div class="calculator">
+            <h2>7. Pembayaran Anuitas (PMT)</h2>
+            <div class="input-group">
+                <label for="pva7">Present Value Anuitas (PVA):</label>
+                <input type="number" id="pva7" placeholder="Masukkan PVA">
+            </div>
+            <div class="input-group">
+                <label for="r7">Suku Bunga (r) per tahun (%):</label>
+                <input type="number" id="r7" placeholder="Masukkan r">
+            </div>
+            <div class="input-group">
+                <label for="n7">Jumlah Tahun (n):</label>
+                <input type="number" id="n7" placeholder="Masukkan n">
+            </div>
+            <button onclick="calculatePMT()">Hitung PMT</button>
+            <div id="resultPMT" class="result"></div>
+            <div class="example">
+                <h3>Contoh Soal:</h3>
+                <p>Anda memiliki utang Rp 50.000.000 yang harus dilunasi dalam 5 tahun dengan bunga 10% per tahun. Berapa pembayaran tahunan yang harus Anda lakukan?</p>
+                <p>PVA = Rp 50.000.000<br>
+                r = 10% = 0,10<br>
+                n = 5 tahun</p>
+                <p>PVA = PMT * [(1 - (1 + r)<sup>-n</sup>) / r]<br>
+                50.000.000 = PMT * [(1 - (1 + 0,10)<sup>-5</sup>) / 0,10]<br>
+                PMT = 50.000.000 / [(1 - (1 + 0,10)<sup>-5</sup>) / 0,10] = Rp 13.180.592</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
